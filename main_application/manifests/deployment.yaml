@@ -14,4 +14,4 @@ spec:
     spec:
       containers:
         - name: mainapp
-          image: markokoskinen2019/dwk-main_app:v3
+          image: markokoskinen2019/dwk-main_app:v4
