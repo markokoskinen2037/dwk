@@ -2,6 +2,8 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: dwk-material-ingress
+  annotations:
+    traefik.ingress.kubernetes.io/rule-type: "PathPrefixStrip"
 spec:
   rules:
   - http:
@@ -9,4 +11,8 @@ spec:
       - path: /
         backend:
           serviceName: mainapp-svc
+          servicePort: 2345
+      - path: /pingpong
+        backend:
+          serviceName: secondapp-svc
           servicePort: 2345

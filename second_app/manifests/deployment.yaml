@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: secondapp-dep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: secondapp
+  template:
+    metadata:
+      labels:
+        app: secondapp
+    spec:
+      containers:
+        - name: secondapp
+          image: markokoskinen2019/dwk-second_app:v2
