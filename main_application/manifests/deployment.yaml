@@ -12,6 +12,17 @@ spec:
       labels:
         app: mainapp
     spec:
+      volumes:
+        - name: shared-timestamp
+          emptyDir: {}
       containers:
         - name: mainapp
-          image: markokoskinen2019/dwk-main_app:v4
+          image: markokoskinen2019/dwk-main_app:v5
+          volumeMounts:
+          - name: shared-timestamp
+            mountPath: /usr/src/app/files
+        - name: timestamp-writer
+          image: markokoskinen2019/dwk-timestamp-storage-app:v3
+          volumeMounts:
+          - name: shared-timestamp
+            mountPath: /usr/src/app/files
