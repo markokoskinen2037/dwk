@@ -2,10 +2,9 @@ const express = require("express")
 const path = require("path")
 const app = express()
 const port = 3000
-const VERSION = "v2"
 const crypto = require("crypto")
 var RANDOM_STRING = crypto.randomBytes(20).toString("hex")
-const TIMESTAMPFILENAME = "timestamps.txt"
+const TIMESTAMPFILENAME = `${__dirname}/files/timestamps.txt`
 const PONGFILELOCATION = `${__dirname}/files/pongcount`
 var fs = require("fs")
 
@@ -21,15 +20,12 @@ app.get("/", function (req, res) {
 
 app.get("/status", (req, res) => {
   const data = getStringWithTimeStamp()
-
   console.log(data)
 
   fs.readFile(PONGFILELOCATION, "utf8", function (err, pongcount) {
     console.log(pongcount)
     res.send(data + "<br></br>" + "pings/pongs:" + pongcount).end()
   })
-
-  console.log("nice")
 })
 
 app.get("/gethashfromfile", (req, res) => {
@@ -43,5 +39,5 @@ app.get("/gethashfromfile", (req, res) => {
 })
 
 app.listen(port, () => {
-  console.log(`${VERSION} Server started in port ${port}`)
+  console.log(`Server started in port ${port}`)
 })
