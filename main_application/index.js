@@ -6,6 +6,7 @@ const VERSION = "v2"
 const crypto = require("crypto")
 var RANDOM_STRING = crypto.randomBytes(20).toString("hex")
 const TIMESTAMPFILENAME = "timestamps.txt"
+const PONGFILELOCATION = `${__dirname}/files/pongcount`
 var fs = require("fs")
 
 const getStringWithTimeStamp = () => {
@@ -20,8 +21,15 @@ app.get("/", function (req, res) {
 
 app.get("/status", (req, res) => {
   const data = getStringWithTimeStamp()
+
   console.log(data)
-  res.send(data).end()
+
+  fs.readFile(PONGFILELOCATION, "utf8", function (err, pongcount) {
+    console.log(pongcount)
+    res.send(data + "<br></br>" + "pings/pongs:" + pongcount).end()
+  })
+
+  console.log("nice")
 })
 
 app.get("/gethashfromfile", (req, res) => {

@@ -12,6 +12,13 @@ spec:
       labels:
         app: secondapp
     spec:
+      volumes:
+      - name: shared-pong
+        persistentVolumeClaim:
+          claimName: pong-claim
       containers:
         - name: secondapp
-          image: markokoskinen2019/dwk-second_app:v2
+          image: markokoskinen2019/dwk-second_app:v7
+          volumeMounts:
+          - name: shared-pong
+            mountPath: /usr/src/app/files

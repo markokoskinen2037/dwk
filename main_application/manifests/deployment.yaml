@@ -13,16 +13,12 @@ spec:
         app: mainapp
     spec:
       volumes:
-        - name: shared-timestamp
-          emptyDir: {}
+        - name: shared-pong
+          persistentVolumeClaim:
+            claimName: pong-claim
       containers:
         - name: mainapp
-          image: markokoskinen2019/dwk-main_app:v5
+          image: markokoskinen2019/dwk-main_app:v6
           volumeMounts:
-          - name: shared-timestamp
-            mountPath: /usr/src/app/files
-        - name: timestamp-writer
-          image: markokoskinen2019/dwk-timestamp-storage-app:v3
-          volumeMounts:
-          - name: shared-timestamp
+          - name: shared-pong
             mountPath: /usr/src/app/files
