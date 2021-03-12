@@ -18,7 +18,7 @@ spec:
             claimName: pong-claim
       containers:
         - name: mainapp
-          image: markokoskinen2019/dwk-main_app:v6
+          image: markokoskinen2019/dwk-main_app:v8
           volumeMounts:
           - name: shared-pong
             mountPath: /usr/src/app/files
