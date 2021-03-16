@@ -23,6 +23,15 @@ const loadDailyImage = () => {
   })
 }
 
+const getPongCount = () => {
+  return fetch("http://secondapp-svc").then((res) => {
+    return res.json().then((data) => {
+      console.log(data)
+      return data.count
+    })
+  })
+}
+
 var imageLoader = async (req, res, next) => {
   const difference = new Date() - new Date(IMAGE_LAST_UPDATED_AT)
   const differenceInDays = Math.round(
@@ -44,13 +53,10 @@ app.get("/", function (req, res) {
 })
 
 app.get("/status", async (req, res) => {
+  const pongCount = await getPongCount()
   const data = getStringWithTimeStamp()
-  console.log(data)
-
-  fs.readFile(PONGFILELOCATION, "utf8", function (err, pongcount) {
-    console.log(pongcount)
-    res.send(data + "<br></br>" + "pings/pongs:" + pongcount).end()
-  })
+  console.log(data, pongCount)
+  res.send(data + "<br></br>" + "pings/pongs:" + pongCount).end()
 })
 
 app.get("/dailyimage", (req, res) => {
