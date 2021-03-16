@@ -16,3 +16,7 @@ spec:
         backend:
           serviceName: secondapp-svc
           servicePort: 2345
+      - path: /todos
+        backend:
+          serviceName: todobackend-svc
+          servicePort: 2345
