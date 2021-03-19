@@ -1,7 +1,7 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: dwk-material-ingress
+  name: dwk-exercises-ingress
   namespace: exercises
   annotations:
     traefik.ingress.kubernetes.io/rule-type: "PathPrefixStrip"
