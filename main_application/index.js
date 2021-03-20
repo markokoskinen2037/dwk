@@ -53,10 +53,20 @@ app.get("/", function (req, res) {
 })
 
 app.get("/status", async (req, res) => {
-  const pongCount = await getPongCount()
+  let pongCount = undefined
+  try {
+    pongCount = await getPongCount()
+  } catch (error) {
+    console.log("failed get pongocunt")
+  }
   const data = getStringWithTimeStamp()
+  const envMessage = process.env.MESSAGE || "no env message defined :("
   console.log(data, pongCount)
-  res.send(data + "<br></br>" + "pings/pongs:" + pongCount).end()
+  res
+    .send(
+      envMessage + "<br></br>" + data + "<br></br>" + "pings/pongs:" + pongCount
+    )
+    .end()
 })
 
 app.get("/dailyimage", (req, res) => {

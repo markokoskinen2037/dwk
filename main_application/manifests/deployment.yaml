@@ -15,4 +15,10 @@ spec:
     spec:
       containers:
         - name: mainapp
-          image: markokoskinen2019/dwk-main_app:v14
+          image: markokoskinen2019/dwk-main_app:v15
+          env:
+            - name: MESSAGE
+              valueFrom:
+                configMapKeyRef:
+                  name: example-configmap
+                  key: message
