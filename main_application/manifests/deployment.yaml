@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: mainapp
-          image: markokoskinen2019/dwk-main_app:v15
+          image: markokoskinen2019/dwk-main_app:v16
           env:
             - name: MESSAGE
               valueFrom:
