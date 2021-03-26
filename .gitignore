@@ -1,2 +1,3 @@
 node_modules
 main_application/files/*
+second_app/manifests/postgres-secret.yaml

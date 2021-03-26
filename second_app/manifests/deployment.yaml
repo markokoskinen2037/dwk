@@ -14,4 +14,20 @@ spec:
     spec:
       containers:
         - name: secondapp
-          image: markokoskinen2019/dwk-second_app:v9
+          image: markokoskinen2019/dwk-second_app:v19
+          env:
+            - name: PGPASSWORD 
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-config
+                  key: PGPASSWORD
+            - name: PGHOST
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-config
+                  key: PGHOST
+            - name: PGUSER
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-config
+                  key: PGUSER

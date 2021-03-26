@@ -1,20 +1,69 @@
 const express = require("express")
 const app = express()
 const port = 3001
+const { Client } = require("pg")
 
-let count = 0
+const initDB = async () => {
+  console.log("Initing db")
+  const client = new Client()
+  await client.connect()
 
-const mw = (req, res, next) => {
-  console.log(req)
-  next()
+  await client.query(
+    "CREATE TABLE IF NOT EXISTS todocount (id serial PRIMARY KEY,count integer NOT NULL)"
+  )
+
+  const result = await client.query("SELECT * FROM todocount")
+
+  if (result.rows.length > 1) {
+    console.log("removing dupes")
+    await client.query("DELETE FROM todocount")
+    await client.query("INSERT INTO todocount (count) values (0)")
+  }
+
+  if (result.rows.length < 1) {
+    console.log("created initial count of 0")
+    await client.query("INSERT INTO todocount (count) values (0)")
+  }
+
+  client.end()
 }
-app.use(mw)
 
-app.get("/", (req, res) => {
-  res.json({ count: count })
-  count++
-})
+const start = async () => {
+  try {
+    await initDB()
+  } catch (error) {
+    console.log(error)
+  }
 
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
-})
+  app.get("/", async (req, res) => {
+    const client = new Client()
+    await client.connect()
+    const data = await client.query("SELECT count from todocount")
+    const count = data.rows[0].count
+    await client.end()
+
+    res.json({ count: count })
+    updateCount()
+  })
+
+  app.listen(port, () => {
+    console.log(`Example app listening at http://localhost:${port}`)
+  })
+}
+
+start()
+
+const updateCount = async () => {
+  const client = new Client()
+  await client.connect()
+  const data = await client.query("SELECT id,count from todocount")
+  const id = data.rows[0].id
+  let newCount = data.rows[0].count + 1
+
+  await client.query("UPDATE todocount set count=$2 where id=$1", [
+    id,
+    newCount,
+  ])
+
+  await client.end()
+}
