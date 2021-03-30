@@ -14,7 +14,7 @@ const addTodo = async (description, done) => {
   await client.connect()
   const result = await client.query(
     "INSERT INTO todos (description,done) values ($1,$2)",
-    [description, done]
+    [description, !!done]
   )
 
   client.end()

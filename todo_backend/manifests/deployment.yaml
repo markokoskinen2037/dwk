@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: todobackend
-          image: markokoskinen2019/dwk-todobackend:v11
+          image: markokoskinen2019/dwk-todobackend:v13
           env:
             - name: PGPASSWORD 
               valueFrom:
