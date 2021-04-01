@@ -10,6 +10,9 @@ const getTodos = async () => {
 }
 
 const addTodo = async (description, done) => {
+  if (!description || !description.length || description.length > 140)
+    throw new Error("Invalid todo length")
+
   const client = new Client()
   await client.connect()
   const result = await client.query(

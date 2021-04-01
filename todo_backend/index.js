@@ -26,7 +26,13 @@ const listen = () => {
 
   app.post("/", async (req, res) => {
     const { description, done } = req.body
-    await addTodo(description, done)
+    try {
+      await addTodo(description, done)
+      console.log("Todo added")
+    } catch ({ message }) {
+      console.log(message)
+      return res.status(400).send(message)
+    }
     const todos = await getTodos()
     res.json(todos)
   })
