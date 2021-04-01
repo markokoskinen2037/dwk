@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: secondapp-dep
+  name: pingpongapp-dep
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: secondapp
+      app: pingpongapp
   template:
     metadata:
       labels:
-        app: secondapp
+        app: pingpongapp
     spec:
       containers:
-        - name: secondapp
+        - name: pingpongapp
           image: markokoskinen2019/dwk-second_app:v20
           env:
             - name: PGPASSWORD 
