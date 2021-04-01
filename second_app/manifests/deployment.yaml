@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: secondapp
-          image: markokoskinen2019/dwk-second_app:v19
+          image: markokoskinen2019/dwk-second_app:v20
           env:
             - name: PGPASSWORD 
               valueFrom:
