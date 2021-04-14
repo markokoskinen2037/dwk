@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pingpongapp-dep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pingpongapp
+  template:
+    metadata:
+      labels:
+        app: pingpongapp
+    spec:
+      containers:
+        - name: pingpongapp
+          image: markokoskinen2019/dwk-second_app:v20
+          env:
+            - name: PGPASSWORD 
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-config
+                  key: PGPASSWORD
+            - name: PGHOST
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-config
+                  key: PGHOST
+            - name: PGUSER
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-config
+                  key: PGUSER
