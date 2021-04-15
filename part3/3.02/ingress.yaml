@@ -1,0 +1,33 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: dwk-project-ingress
+  namespace: project
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /
+        backend:
+          serviceName: mainapp-svc
+          servicePort: 80
+      - path: /static/*
+        backend:
+          serviceName: mainapp-svc
+          servicePort: 80
+      - path: /status
+        backend:
+          serviceName: mainapp-svc
+          servicePort: 80
+      - path: /dailyimage
+        backend:
+          serviceName: mainapp-svc
+          servicePort: 80
+      - path: /todos
+        backend:
+          serviceName: todobackend-svc
+          servicePort: 2345
+      - path: /pingpong
+        backend:
+          serviceName: pingpong-svc
+          servicePort: 80

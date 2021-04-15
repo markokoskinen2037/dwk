@@ -1,0 +1,48 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: pingpong-svc
+  namespace: project
+spec:
+  type: NodePort
+  selector:
+    app: pingpongapp
+  ports:
+    - port: 80
+      protocol: TCP
+      targetPort: 3001
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pingpongapp-dep
+  namespace: project
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pingpongapp
+  template:
+    metadata:
+      labels:
+        app: pingpongapp
+    spec:
+      containers:
+        - name: pingpongapp
+          image: markokoskinen2019/dwk-second_app:v21
+          env:
+            - name: PGPASSWORD 
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-config
+                  key: PGPASSWORD
+            - name: PGHOST
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-config
+                  key: PGHOST
+            - name: PGUSER
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-config
+                  key: PGUSER
