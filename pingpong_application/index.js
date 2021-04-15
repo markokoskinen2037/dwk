@@ -35,7 +35,7 @@ const start = async () => {
     console.log(error)
   }
 
-  app.get("/", async (req, res) => {
+  app.get("/pingpong", async (req, res) => {
     const client = new Client()
     await client.connect()
     const data = await client.query("SELECT count from pingcount")
