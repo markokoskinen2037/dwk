@@ -19,12 +19,16 @@ const listen = () => {
   app.use(bodyParser.json()) // for parsing application/json
   app.use(bodyParser.urlencoded({ extended: true }))
 
-  app.get("/", async (req, res) => {
+  app.get("/", (req,res) => {
+    res.send("hello")
+  })
+
+  app.get("/todos", async (req, res) => {
     const todos = await getTodos()
     res.json(todos)
   })
 
-  app.post("/", async (req, res) => {
+  app.post("/todos", async (req, res) => {
     const { description, done } = req.body
     try {
       await addTodo(description, done)
