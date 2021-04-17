@@ -46,5 +46,5 @@ jobs:
     - name: Deploy
       run: |-
         ./kustomize edit set image PROJECT/IMAGE=$IMAGE_WITH_TAG
-        kubectl apply -k ../part3/3.03/
+        kubectl apply -k ./part3/3.03/
         kubectl rollout status deployment $IMAGE
