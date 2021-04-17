@@ -9,6 +9,7 @@ env:
   GKE_CLUSTER: dwk-cluster
   GKE_ZONE: europe-north1-b
   IMAGE: mainapp-dep
+  NAMESPACE: project
   ACTIONS_ALLOW_UNSECURE_COMMANDS: true
 
 jobs:
@@ -48,4 +49,4 @@ jobs:
         cd part3/3.03/
         ./../../kustomize edit set image PROJECT/IMAGE=$IMAGE_WITH_TAG
         kubectl apply -k .
-        kubectl rollout status deployment $IMAGE
+        kubectl rollout status deployment $IMAGE --namespace=$NAMESPACE
