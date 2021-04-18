@@ -13,4 +13,7 @@ WORKDIR /usr/src/app/frontti/
 RUN npm ci
 RUN npm run build
 
+WORKDIR /usr/src/app/
+
+
 CMD [ "node", "index.js" ]
