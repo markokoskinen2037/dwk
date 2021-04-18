@@ -58,6 +58,8 @@ app.get("/status", async (req, res) => {
     pongCount = await getPongCount()
   } catch (error) {
     console.log("failed get pongocunt")
+    console.log(error);
+    console.log(error.message);    
   }
   const data = getStringWithTimeStamp()
   const envMessage = process.env.MESSAGE || "no env message defined :("
