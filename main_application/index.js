@@ -24,7 +24,7 @@ const loadDailyImage = () => {
 }
 
 const getPongCount = () => {
-  return fetch("http://pingpong-svc.project.svc.cluster.local").then((res) => {
+  return fetch("http://pingpong-svc.project.svc.cluster.local/pingpong").then((res) => {
     return res.json().then((data) => {
       console.log(data)
       return data.count
