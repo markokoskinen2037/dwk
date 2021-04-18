@@ -1,5 +1,11 @@
 name: Branch Deleted
 on: delete
+
+env:
+  GKE_CLUSTER: dwk-cluster
+  GKE_ZONE: europe-north1-b
+  ACTIONS_ALLOW_UNSECURE_COMMANDS: true
+
 jobs:
   delete:
     name: 'delete stuff'
