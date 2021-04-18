@@ -2,14 +2,8 @@ name: Branch Deleted
 on: delete
 jobs:
   delete:
+    name: 'delete stuff'
     if: github.event.ref_type == 'branch'
-    runs-on: ubuntu-latest
-    steps:
-
-
-jobs:
-  setup-build-publish-deploy:
-    name: Setup, Build, Publish, and Deploy
     runs-on: ubuntu-latest
 
     steps:
