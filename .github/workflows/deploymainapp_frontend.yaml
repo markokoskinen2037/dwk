@@ -2,8 +2,9 @@ name: Release application
 
 on:
   push:
-    # paths:
-    # - 'main_application/**'
+    paths:
+    - 'main_application/**'
+    - '.github/workflows/deploymainapp_frontend.yaml'
 
 env:
   GKE_CLUSTER: dwk-cluster
