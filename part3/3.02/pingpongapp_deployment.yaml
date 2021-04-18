@@ -29,7 +29,7 @@ spec:
     spec:
       containers:
         - name: pingpongapp
-          image: markokoskinen2019/dwk-second_app:v21
+          image: markokoskinen2019/dwk-second_app:v22
           env:
             - name: PGPASSWORD 
               valueFrom:

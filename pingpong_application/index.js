@@ -35,6 +35,10 @@ const start = async () => {
     console.log(error)
   }
 
+  app.get("/", (req,res) => {
+    res.send("roto of pingpong")
+  })
+
   app.get("/pingpong", async (req, res) => {
     const client = new Client()
     await client.connect()
