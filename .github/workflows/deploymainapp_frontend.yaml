@@ -1,4 +1,4 @@
-name: Release application
+name: Mainapp frontend deployment
 
 on:
   push:
