@@ -31,4 +31,5 @@ jobs:
       run: |-
         wget https://gist.githubusercontent.com/superbrothers/b428cd021e002f355ffd6dd421b75f70/raw/36200fe7db03360c40b6c97c480d91688db7f2a4/kubectl-delete_all
         chmod +x kubectl-delete_all
-        ./kubectl delete-all -n ${{ github.event.ref }}
+        kubectl config set-context --current --namespace=${{ github.event.ref }}
+        ./kubectl-delete_all
