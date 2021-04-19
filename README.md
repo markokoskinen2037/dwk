@@ -31,5 +31,8 @@ https://convox.com/blog/k8s-cost-saving
 
 -------------------------------
 #### Exercise 3.07: Commitment
-Decided to go with a PostgreSQL database on Google SQL.
-Definitely sounded like the better (and easier) option for real world usecases. Besides I wanted to test how easily a Google SQL database can be set up for use.
+Decided to go with a PostgreSQL database on Google SQL. Definitely sounded like the better (and easier) option for real world usecases. Besides I wanted to test how easily a Google SQL database can be set up for use.
+
+------------------------------
+#### Exercise 3.10
+![image](https://user-images.githubusercontent.com/22393121/115245683-e0ad8300-a12d-11eb-9875-78a9565d94ab.png)
