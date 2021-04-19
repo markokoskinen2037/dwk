@@ -30,6 +30,10 @@ spec:
       containers:
         - name: mainapp
           image: markokoskinen2019/dwk-main_app:v23
+          resources:
+            limits:
+              cpu: "500m"
+              memory: "50Mi"
           env:
             - name: MESSAGE
               valueFrom:

@@ -30,6 +30,10 @@ spec:
       containers:
         - name: pingpongapp
           image: markokoskinen2019/dwk-second_app:v22
+          resources:
+            limits:
+              cpu: "500m"
+              memory: "100Mi"
           env:
             - name: PGPASSWORD 
               valueFrom:
@@ -48,6 +52,10 @@ spec:
                   key: PGUSER
         - name: cloud-sql-proxy
           image: gcr.io/cloudsql-docker/gce-proxy:1.17
+          resources:
+            limits:
+              cpu: "500m"
+              memory: "100Mi"
           command:
             - "/cloud_sql_proxy"
             - "-instances=dwk-gke-310715:europe-north1:project-db=tcp:5432"
