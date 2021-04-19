@@ -1,5 +1,3 @@
 node_modules
 main_application/files/*
-second_app/manifests/postgres-secret.yaml
-todo_backend/manifests/postgres-secret.yaml
-part3/3.02/secrets/*
+.manifests_common/secrets/*
