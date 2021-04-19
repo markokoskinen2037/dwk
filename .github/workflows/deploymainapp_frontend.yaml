@@ -10,7 +10,6 @@ env:
   GKE_CLUSTER: dwk-cluster
   GKE_ZONE: europe-north1-b
   IMAGE: mainapp-dep
-  NAMESPACE: project
   ACTIONS_ALLOW_UNSECURE_COMMANDS: true
 
 jobs:
@@ -45,7 +44,8 @@ jobs:
         curl -sfLo kustomize https://github.com/kubernetes-sigs/kustomize/releases/download/v3.1.0/kustomize_3.1.0_linux_amd64
         chmod u+x ./kustomize
 
-    - name: Deploy
+    - name: Deploy to branch environment
+      if: github.ref != 'refs/heads/master'
       run: |-
         cd main_application/manifests/kustomize/
         kubectl create namespace ${GITHUB_REF#refs/heads/} || true
@@ -53,4 +53,16 @@ jobs:
         ./../../../kustomize edit set namespace ${GITHUB_REF#refs/heads/}
         ./../../../kustomize edit set image PROJECT/IMAGE=$IMAGE_WITH_TAG
         kubectl apply -k .
-        kubectl rollout status deployment $IMAGE --namespace=$NAMESPACE
+        kubectl rollout status deployment $IMAGE --namespace=${GITHUB_REF#refs/heads/}
+
+    - name: Publish to main "project" environment
+      # Develop branch only
+      if: github.ref == 'refs/heads/master'
+      run: |-
+        cd main_application/manifests/kustomize/
+        kubectl create namespace project || true
+        kubectl config set-context --current --namespace=project
+        ./../../../kustomize edit set namespace project
+        ./../../../kustomize edit set image PROJECT/IMAGE=$IMAGE_WITH_TAG
+        kubectl apply -k .
+        kubectl rollout status deployment $IMAGE --namespace=project
