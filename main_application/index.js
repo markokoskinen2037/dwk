@@ -57,7 +57,7 @@ app.get("/status", async (req, res) => {
   try {
     pongCount = await getPongCount()
   } catch (error) {
-    console.log("failed get pongocunt")
+    console.log("failed get pongocunt, version 2")
     console.log(error);
     console.log(error.message);    
   }
