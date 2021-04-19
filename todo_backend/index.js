@@ -19,7 +19,7 @@ const listen = () => {
   app.use(bodyParser.json()) // for parsing application/json
   app.use(bodyParser.urlencoded({ extended: true }))
 
-  app.get("/", (req,res) => {
+  app.get("/", (req, res) => {
     res.send("hello")
   })
 
@@ -32,7 +32,7 @@ const listen = () => {
     const { description, done } = req.body
     try {
       await addTodo(description, done)
-      console.log("Todo added")
+      console.log("Todo added", description)
     } catch ({ message }) {
       console.log(message)
       return res.status(400).send(message)
