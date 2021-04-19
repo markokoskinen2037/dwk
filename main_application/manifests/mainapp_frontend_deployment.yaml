@@ -29,7 +29,7 @@ spec:
     spec:
       containers:
         - name: mainapp
-          image: markokoskinen2019/dwk-main_app:v23
+          image: markokoskinen2019/dwk-main_app:v24
           resources:
             limits:
               cpu: "500m"

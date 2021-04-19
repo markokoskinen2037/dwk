@@ -29,7 +29,7 @@ spec:
     spec:
       containers:
         - name: todobackend
-          image: markokoskinen2019/dwk-todobackend:v16
+          image: markokoskinen2019/dwk-todobackend:v17
           resources:
             limits:
               cpu: "250m"
