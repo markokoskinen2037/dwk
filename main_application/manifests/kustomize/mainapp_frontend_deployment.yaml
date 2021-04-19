@@ -31,9 +31,9 @@ spec:
         - name: mainapp
           image: PROJECT/IMAGE
           resources:
-          limits:
-            cpu: "500m"
-            memory: "50Mi"
+            limits:
+              cpu: "500m"
+              memory: "50Mi"
           env:
             - name: MESSAGE
               valueFrom:
