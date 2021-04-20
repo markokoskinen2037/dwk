@@ -1,5 +1,3 @@
----
-
 #### Exercise 3.06: DBaaS vs DIY
 
 ##### Database as a service (Google Cloud SQL)
@@ -36,6 +34,8 @@ Sources
 https://cloud.google.com/sql
 https://cloud.google.com/blog/products/databases/to-run-or-not-to-run-a-database-on-kubernetes-what-to-consider
 https://convox.com/blog/k8s-cost-saving
+
+
 
 ---
 
