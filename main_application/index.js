@@ -60,8 +60,6 @@ var imageLoader = async (req, res, next) => {
 
 app.use(imageLoader)
 
-app.use(express.static(path.join(__dirname, "/frontti/build")))
-
 app.get("/healthz", async (req, res) => {
   const ok = await pingpongAppAvailable()
   console.log("ok", ok)
@@ -69,7 +67,7 @@ app.get("/healthz", async (req, res) => {
 })
 
 app.get("/", function (req, res) {
-  res.sendFile(path.join(__dirname, "/frontti/build", "index.html"))
+  res.send("root of mainapp")
 })
 
 app.get("/status", async (req, res) => {

@@ -9,11 +9,11 @@ spec:
       paths:
       - path: /
         backend:
-          serviceName: mainapp-svc
+          serviceName: project-frontend-svc
           servicePort: 80
       - path: /static/*
         backend:
-          serviceName: mainapp-svc
+          serviceName: project-frontend-svc
           servicePort: 80
       - path: /status
         backend:
@@ -25,7 +25,7 @@ spec:
           servicePort: 80
       - path: /todos
         backend:
-          serviceName: todobackend-svc
+          serviceName: project-backend-svc
           servicePort: 2345
       - path: /pingpong
         backend:
