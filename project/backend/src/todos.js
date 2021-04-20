@@ -25,7 +25,20 @@ const addTodo = async (description, done) => {
   return result.rows
 }
 
+const markAsDone = async (id) => {
+  const client = new Client()
+  await client.connect()
+  const result = await client.query("UPDATE todos set done=true where id=$1", [
+    id,
+  ])
+
+  client.end()
+
+  return result.rows
+}
+
 module.exports = {
   getTodos,
   addTodo,
+  markAsDone,
 }

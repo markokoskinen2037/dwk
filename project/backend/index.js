@@ -4,7 +4,7 @@ const port = 3002
 
 var bodyParser = require("body-parser")
 const { initDB, canConnectToDb } = require("./src/initdb")
-const { getTodos, addTodo } = require("./src/todos")
+const { getTodos, addTodo, markAsDone } = require("./src/todos")
 
 const listen = () => {
   app.use(function (req, res, next) {
@@ -44,6 +44,12 @@ const listen = () => {
     }
     const todos = await getTodos()
     res.json(todos)
+  })
+
+  app.put("/todos/:id", async (req, res) => {
+    const { id } = req.params
+    const temp = await markAsDone(id)
+    res.json(temp)
   })
 
   app.listen(port, () => {

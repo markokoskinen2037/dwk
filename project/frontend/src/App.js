@@ -18,6 +18,24 @@ async function postData(url = "", data = {}) {
   return response.json() // parses JSON response into native JavaScript objects
 }
 
+async function putData(url = "", data = {}) {
+  // Default options are marked with *
+  const response = await fetch(url, {
+    method: "PUT", // *GET, POST, PUT, DELETE, etc.
+    mode: "cors", // no-cors, *cors, same-origin
+    cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+    credentials: "same-origin", // include, *same-origin, omit
+    headers: {
+      "Content-Type": "application/json",
+      // 'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    redirect: "follow", // manual, *follow, error
+    referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+    body: JSON.stringify(data), // body data type must match "Content-Type" header
+  })
+  return response.json() // parses JSON response into native JavaScript objects
+}
+
 function App() {
   const [todo, setTodo] = useState("")
   const [todoList, setTodoList] = useState([])
@@ -48,6 +66,27 @@ function App() {
     }
   }
 
+  const markAsDone = async (id) => {
+    try {
+      const res = await putData(`/todos/${id}`)
+      console.log(res)
+      setTodoList(
+        todoList.map((e) => {
+          if (e.id == id) {
+            return {
+              ...e,
+              done: true,
+            }
+          }
+          return e
+        })
+      )
+      setTodo("")
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
   return (
     <div className="App">
       <img style={{ height: 200 }} src="./dailyimage" alt="dailyimage" />
@@ -56,9 +95,12 @@ function App() {
       <button onClick={addTodo}>create todo</button>
       <br></br>
       <ul>
-        {todoList.map(({ description, done }) => (
+        {todoList.map(({ description, done, id }) => (
           <li key={description}>
-            {description} - {done ? "done" : "not done"}
+            {description} -{" "}
+            <button onClick={() => markAsDone(id)}>
+              {done ? "done" : "not done"}
+            </button>
           </li>
         ))}
       </ul>

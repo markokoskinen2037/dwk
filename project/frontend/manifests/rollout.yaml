@@ -4,7 +4,7 @@ metadata:
   name: project-frontend-dep
   namespace: project
 spec:
-  replicas: 4
+  replicas: 1
   selector:
     matchLabels:
       app: project-frontend
@@ -24,7 +24,7 @@ spec:
     spec:
       containers:
         - name: project-frontend
-          image: markokoskinen2019/dwk-project-frontend:v3
+          image: markokoskinen2019/dwk-project-frontend:v4
           resources:
             limits:
               cpu: "500m"

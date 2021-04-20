@@ -4,7 +4,7 @@ metadata:
   name: project-backend-dep
   namespace: project
 spec:
-  replicas: 4
+  replicas: 1
   selector:
     matchLabels:
       app: project-backend
@@ -24,7 +24,7 @@ spec:
     spec:
       containers:
         - name: project-backend
-          image: markokoskinen2019/dwk-project-backend:v4
+          image: markokoskinen2019/dwk-project-backend:v5
           resources:
             limits:
               cpu: "250m"
