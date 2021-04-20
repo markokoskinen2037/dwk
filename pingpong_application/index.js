@@ -28,6 +28,18 @@ const initDB = async () => {
   client.end()
 }
 
+const checkDBconnection = async () => {
+  console.log("Checking DB connection")
+  try {
+    const client = new Client()
+    await client.connect()
+    client.end()
+    return true
+  } catch (error) {
+    return false
+  }
+}
+
 const start = async () => {
   try {
     await initDB()
@@ -35,8 +47,13 @@ const start = async () => {
     console.log(error)
   }
 
-  app.get("/", (req,res) => {
+  app.get("/", (req, res) => {
     res.send("roto of pingpong")
+  })
+
+  app.get("/healthz", async (req, res) => {
+    const dbReady = await checkDBconnection()
+    dbReady ? res.sendStatus(200) : res.sendStatus(500)
   })
 
   app.get("/pingpong", async (req, res) => {

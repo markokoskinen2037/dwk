@@ -24,12 +24,26 @@ const loadDailyImage = () => {
 }
 
 const getPongCount = () => {
-  return fetch("http://pingpong-svc.project.svc.cluster.local/pingpong").then((res) => {
-    return res.json().then((data) => {
-      console.log(data)
-      return data.count
-    })
-  })
+  return fetch("http://pingpong-svc.project.svc.cluster.local/pingpong").then(
+    (res) => {
+      return res.json().then((data) => {
+        console.log(data)
+        return data.count
+      })
+    }
+  )
+}
+
+const pingpongAppAvailable = async () => {
+  try {
+    const res = await fetch(
+      "http://pingpong-svc.project.svc.cluster.local/healthz"
+    )
+    console.log(res.status)
+    return !!(res.status == 200)
+  } catch (e) {
+    return false
+  }
 }
 
 var imageLoader = async (req, res, next) => {
@@ -48,6 +62,12 @@ app.use(imageLoader)
 
 app.use(express.static(path.join(__dirname, "/frontti/build")))
 
+app.get("/healthz", async (req, res) => {
+  const ok = await pingpongAppAvailable()
+  console.log("ok", ok)
+  ok ? res.sendStatus(200) : res.sendStatus(500)
+})
+
 app.get("/", function (req, res) {
   res.sendFile(path.join(__dirname, "/frontti/build", "index.html"))
 })
@@ -58,8 +78,8 @@ app.get("/status", async (req, res) => {
     pongCount = await getPongCount()
   } catch (error) {
     console.log("failed get pongocunt, version 2")
-    console.log(error);
-    console.log(error.message);    
+    console.log(error)
+    console.log(error.message)
   }
   const data = getStringWithTimeStamp()
   const envMessage = process.env.MESSAGE || "no env message defined :("

@@ -29,7 +29,7 @@ spec:
     spec:
       containers:
         - name: pingpongapp
-          image: markokoskinen2019/dwk-second_app:v22
+          image: markokoskinen2019/dwk-second_app:v24
           resources:
             limits:
               cpu: "500m"
@@ -50,3 +50,9 @@ spec:
                 secretKeyRef:
                   name: gcpsql-postgres-config
                   key: PGUSER
+          readinessProbe:
+            initialDelaySeconds: 10 # Initial delay until the readiness is tested
+            periodSeconds: 5 # How often to test
+            httpGet:
+               path: /healthz
+               port: 3001

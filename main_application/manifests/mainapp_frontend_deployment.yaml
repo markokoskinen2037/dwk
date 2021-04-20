@@ -29,7 +29,7 @@ spec:
     spec:
       containers:
         - name: mainapp
-          image: markokoskinen2019/dwk-main_app:v24
+          image: markokoskinen2019/dwk-main_app:v28
           resources:
             limits:
               cpu: "500m"
@@ -40,3 +40,9 @@ spec:
                 configMapKeyRef:
                   name: example-configmap
                   key: message
+          readinessProbe:
+            initialDelaySeconds: 10 # Initial delay until the readiness is tested
+            periodSeconds: 5 # How often to test
+            httpGet:
+               path: /healthz
+               port: 3000
