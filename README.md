@@ -36,3 +36,7 @@ Decided to go with a PostgreSQL database on Google SQL. Definitely sounded like 
 ------------------------------
 #### Exercise 3.10
 ![image](https://user-images.githubusercontent.com/22393121/115245683-e0ad8300-a12d-11eb-9875-78a9565d94ab.png)
+
+-------------------------------
+#### Exercise 4.03
+Query: ```sum(kube_pod_info{namespace="prometheus", created_by_kind="StatefulSet"})```
