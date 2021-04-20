@@ -3,7 +3,7 @@ const app = express()
 const port = 3002
 
 var bodyParser = require("body-parser")
-const { initDB } = require("./src/initdb")
+const { initDB, canConnectToDb } = require("./src/initdb")
 const { getTodos, addTodo } = require("./src/todos")
 
 const listen = () => {
@@ -21,6 +21,11 @@ const listen = () => {
 
   app.get("/", (req, res) => {
     res.send("hello")
+  })
+
+  app.get("/healthz", async (req, res) => {
+    const ok = await canConnectToDb()
+    ok ? res.sendStatus(200) : res.sendStatus(500)
   })
 
   app.get("/todos", async (req, res) => {

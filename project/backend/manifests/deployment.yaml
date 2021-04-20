@@ -29,7 +29,7 @@ spec:
     spec:
       containers:
         - name: project-backend
-          image: markokoskinen2019/dwk-project-backend:v1
+          image: markokoskinen2019/dwk-project-backend:v4
           resources:
             limits:
               cpu: "250m"
@@ -50,3 +50,15 @@ spec:
                 secretKeyRef:
                   name: gcpsql-postgres-config
                   key: PGUSER
+          readinessProbe:
+            initialDelaySeconds: 10 # Initial delay until the readiness is tested
+            periodSeconds: 5 # How often to test
+            httpGet:
+               path: /healthz
+               port: 3002
+          livenessProbe:
+            initialDelaySeconds: 20 # Initial delay until the liveness is tested
+            periodSeconds: 5 # How often to test
+            httpGet:
+               path: /healthz
+               port: 3002

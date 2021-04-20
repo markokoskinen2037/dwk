@@ -1,18 +1,34 @@
 const { Client } = require("pg")
 
 const initDB = async (callback) => {
-  console.log("Initing db")
-  const client = new Client()
-  await client.connect()
+  try {
+    console.log("Trying to init DB")
+    const client = new Client()
+    await client.connect()
+    await client.query(
+      "CREATE TABLE IF NOT EXISTS todos (id serial PRIMARY KEY,description VARCHAR(255) NOT NULL, done BOOLEAN NOT NULL)"
+    )
+    client.end()
+    callback()
+  } catch (error) {
+    console.log("Failed to init DB, trying again in 5s")
+    setTimeout(initDB, 5000)
+  }
+}
 
-  await client.query(
-    "CREATE TABLE IF NOT EXISTS todos (id serial PRIMARY KEY,description VARCHAR(255) NOT NULL, done BOOLEAN NOT NULL)"
-  )
-
-  client.end()
-  callback()
+const canConnectToDb = async () => {
+  try {
+    console.log("checking db connection")
+    const client = new Client()
+    await client.connect()
+    client.end()
+    return true
+  } catch (error) {
+    return false
+  }
 }
 
 module.exports = {
   initDB,
+  canConnectToDb,
 }
