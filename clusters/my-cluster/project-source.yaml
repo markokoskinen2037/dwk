@@ -8,4 +8,6 @@ spec:
   interval: 30s
   ref:
     branch: master
-  url: https://github.com/markokoskinen2037/dwk
+  url: ssh://git@github.com:markokoskinen2037/dwk.git
+  secretRef:
+    name: ssh-credentials
