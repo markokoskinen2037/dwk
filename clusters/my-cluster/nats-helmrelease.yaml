@@ -7,3 +7,4 @@ spec:
   chart:
     repository: https://nats-io.github.io/k8s/helm/charts/
     name: nats
+    version: 0.7.5 # latest
