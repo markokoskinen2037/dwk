@@ -1,4 +1,4 @@
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: dwk-project-ingress
@@ -8,26 +8,44 @@ spec:
   - http:
       paths:
       - path: /
+        pathType: Exact
         backend:
-          serviceName: project-frontend-svc
-          servicePort: 80
+          service:
+            name: project-frontend-svc
+            port:
+              number: 80
       - path: /static/*
+        pathType: Exact
         backend:
-          serviceName: project-frontend-svc
-          servicePort: 80
+            service:
+              name: project-frontend-svc
+              port:
+                number: 80
       - path: /status
+        pathType: Exact
         backend:
-          serviceName: mainapp-svc
-          servicePort: 80
+            service:
+              name: mainapp-svc
+              port:
+                number: 80
       - path: /dailyimage
+        pathType: Exact
         backend:
-          serviceName: mainapp-svc
-          servicePort: 80
+            service:
+              name: mainapp-svc
+              port:
+                number: 80
       - path: /todos
+        pathType: Exact
         backend:
-          serviceName: project-backend-svc
-          servicePort: 2345
+            service:
+              name: project-backend-svc
+              port:
+                number: 2345
       - path: /pingpong
+        pathType: Exact
         backend:
-          serviceName: pingpong-svc
-          servicePort: 80
+            service:
+              name: pingpong-svc
+              port:
+                number: 80
