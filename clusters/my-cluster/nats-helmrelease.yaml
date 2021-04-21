@@ -1,0 +1,9 @@
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: nats
+  namespace: default
+spec:
+  chart:
+    repository: https://nats-io.github.io/k8s/helm/charts/
+    name: nats
