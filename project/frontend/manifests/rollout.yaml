@@ -24,7 +24,7 @@ spec:
     spec:
       containers:
         - name: project-frontend
-          image: markokoskinen2019/dwk-project-frontend:v4
+          image: markokoskinen2019/dwk-project-frontend:v6
           resources:
             limits:
               cpu: "500m"

@@ -1,6 +1,6 @@
 const { Client } = require("pg")
 
-const initDB = async (callback) => {
+const initDB = async () => {
   try {
     console.log("Trying to init DB")
     const client = new Client()
@@ -9,10 +9,8 @@ const initDB = async (callback) => {
       "CREATE TABLE IF NOT EXISTS todos (id serial PRIMARY KEY,description VARCHAR(255) NOT NULL, done BOOLEAN NOT NULL)"
     )
     client.end()
-    callback()
   } catch (error) {
-    console.log("Failed to init DB, trying again in 5s")
-    setTimeout(initDB, 5000)
+    console.log("Failed to init DB, unclucky")
   }
 }
 

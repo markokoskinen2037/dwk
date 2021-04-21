@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: broadcaster-dep
+  namespace: project
+spec:
+  replicas: 6
+  selector:
+    matchLabels:
+      app: broadcaster
+  template:
+    metadata:
+      labels:
+        app: broadcaster
+        group: project
+    spec:
+      containers:
+        - name: project-backend
+          image: markokoskinen2019/dwk-project-broadcaster:v2
+          resources:
+            limits:
+              cpu: "250m"
+              memory: "50Mi"
+          env:
+            - name: BOT_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: telegram-bot-token
+                  key: BOT_TOKEN
+            - name: NATS_URL
+              value: nats://my-nats.default.svc.cluster.local:4222

@@ -30,7 +30,7 @@ spec:
     spec:
       containers:
         - name: project-backend
-          image: markokoskinen2019/dwk-project-backend:v4
+          image: markokoskinen2019/dwk-project-backend:v13
           resources:
             limits:
               cpu: "250m"
@@ -51,6 +51,8 @@ spec:
                 secretKeyRef:
                   name: gcpsql-postgres-config
                   key: PGUSER
+            - name: NATS_URL
+              value: nats://my-nats.default.svc.cluster.local:4222
           readinessProbe:
             initialDelaySeconds: 10 # Initial delay until the readiness is tested
             periodSeconds: 5 # How often to test

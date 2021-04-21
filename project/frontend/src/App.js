@@ -68,20 +68,8 @@ function App() {
 
   const markAsDone = async (id) => {
     try {
-      const res = await putData(`/todos/${id}`)
-      console.log(res)
-      setTodoList(
-        todoList.map((e) => {
-          if (e.id == id) {
-            return {
-              ...e,
-              done: true,
-            }
-          }
-          return e
-        })
-      )
-      setTodo("")
+      const newlist = await putData(`/todos/${id}`)
+      setTodoList(newlist)
     } catch (e) {
       console.log(e)
     }
@@ -96,7 +84,7 @@ function App() {
       <br></br>
       <ul>
         {todoList.map(({ description, done, id }) => (
-          <li key={description}>
+          <li key={id}>
             {description} -{" "}
             <button onClick={() => markAsDone(id)}>
               {done ? "done" : "not done"}
