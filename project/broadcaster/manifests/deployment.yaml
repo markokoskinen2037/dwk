@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: project-backend
-          image: markokoskinen2019/dwk-project-broadcaster:v2
+          image: IMAGE_PLACEHOLDER
           resources:
             limits:
               cpu: "250m"

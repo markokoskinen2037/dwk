@@ -3,3 +3,7 @@ kind: Kustomization
 resources:
 - ./deployment.yaml
 - ../../../.manifests_common/sealedsecrets/ss3.yaml 
+images:
+- name: IMAGE_PLACEHOLDER
+  newName: markokoskinen2019/dwk-project-broadcaster
+  newTag: v2
