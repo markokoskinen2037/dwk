@@ -5,3 +5,7 @@ resources:
 - deployment.yaml
 - namespace.yaml
 - ../../../.manifests_common/sealedsecrets/ss2.yaml 
+images:
+- name: IMAGE_PLACEHOLDER
+  newName: markokoskinen2019/dwk-project-backend
+  newTag: v13
