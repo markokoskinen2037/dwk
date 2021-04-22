@@ -2,8 +2,8 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
 - ./deployment.yaml
-- ../../../.manifests_common/sealedsecrets/ss3.yaml 
+- ../../../.manifests_common/sealedsecrets/ss3.yaml
 images:
 - name: IMAGE_PLACEHOLDER
   newName: markokoskinen2019/dwk-project-broadcaster
-  newTag: v2
+  newTag: 1d7431ca4946a5b80472d79ac1d899ec8ca21b59
