@@ -52,7 +52,7 @@ spec:
                   name: gcpsql-postgres-config
                   key: PGUSER
             - name: NATS_URL
-              value: nats://default-nats.default.svc.cluster.local:4222
+              value: nats://nats.default.svc.cluster.local:4222
           readinessProbe:
             initialDelaySeconds: 10 # Initial delay until the readiness is tested
             periodSeconds: 5 # How often to test

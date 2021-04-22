@@ -28,4 +28,4 @@ spec:
                   name: telegram-bot-token
                   key: BOT_TOKEN
             - name: NATS_URL
-              value: nats://default-nats.default.svc.cluster.local:4222
+              value: nats://nats.default.svc.cluster.local:4222
