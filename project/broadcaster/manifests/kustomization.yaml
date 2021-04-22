@@ -7,4 +7,4 @@ resources:
 images:
 - name: IMAGE_PLACEHOLDER
   newName: markokoskinen2019/dwk-project-broadcaster
-  newTag: 396fad62f8b7248ebeef8e6fffae668654e9e92c
+  newTag: f605ca8ffc1a20614464622660583f09d5994fea
