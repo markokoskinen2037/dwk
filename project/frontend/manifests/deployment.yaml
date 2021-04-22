@@ -30,7 +30,7 @@ spec:
     spec:
       containers:
         - name: project-frontend
-          image: markokoskinen2019/dwk-project-frontend:v6
+          image: IMAGE_PLACEHOLDER
           resources:
             limits:
               cpu: "500m"
