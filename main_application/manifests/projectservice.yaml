@@ -1,0 +1,10 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: mainapp-svc
+  namespace: project
+spec:
+  type: ExternalName
+  externalName: mainapp-svc.exercises.svc.cluster.local
+  ports:
+  - port: 80
