@@ -35,8 +35,6 @@ https://cloud.google.com/sql
 https://cloud.google.com/blog/products/databases/to-run-or-not-to-run-a-database-on-kubernetes-what-to-consider
 https://convox.com/blog/k8s-cost-saving
 
-
-
 ---
 
 #### Exercise 3.07: Commitment
@@ -54,3 +52,11 @@ Decided to go with a PostgreSQL database on Google SQL. Definitely sounded like 
 #### Exercise 4.03
 
 Query: `sum(kube_pod_info{namespace="prometheus", created_by_kind="StatefulSet"})`
+
+---
+
+#### How to flux:
+
+1. create flux-system namespace
+2. apply ss master.key
+3. `flux bootstrap github --owner=markokoskinen2037 --repository=dwk --personal --private=false --branch=master --path=clusters/my-cluster`
