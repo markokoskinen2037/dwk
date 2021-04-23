@@ -1,0 +1,6 @@
+apiVersion: stable.dwk/v1
+kind: DummySites
+metadata:
+  name: example-dummysite
+spec:
+  url_to_clone: http://example.fi
