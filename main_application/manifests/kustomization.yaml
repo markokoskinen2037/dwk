@@ -5,6 +5,7 @@ resources:
 - configmap.yaml
 - namespace.yaml
 - projectservice.yaml
+- project-namespace.yaml
 images:
 - name: IMAGE_PLACEHOLDER
   newName: markokoskinen2019/dwk-main_app
