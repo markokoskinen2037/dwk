@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: pingpong-svc
-  namespace: project
+  namespace: exercises
 spec:
   type: NodePort
   selector:
@@ -16,7 +16,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: pingpongapp-dep
-  namespace: project
+  namespace: exercises
 spec:
   replicas: 1
   selector:

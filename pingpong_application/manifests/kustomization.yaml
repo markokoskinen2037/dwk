@@ -3,3 +3,6 @@ kind: Kustomization
 resources:
 - ./deployment.yaml
 - ./namespace.yaml
+- ./project-namespace.yaml
+- ./projectservice.yaml
+- ../../.manifests_common/sealedsecrets/ss4.yaml

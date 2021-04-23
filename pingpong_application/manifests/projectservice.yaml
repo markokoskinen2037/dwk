@@ -1,0 +1,10 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: pingpong-svc
+  namespace: project
+spec:
+  type: ExternalName
+  externalName: pingpong-svc.exercises.svc.cluster.local
+  ports:
+  - port: 80
