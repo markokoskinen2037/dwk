@@ -64,5 +64,30 @@ Query: `sum(kube_pod_info{namespace="prometheus", created_by_kind="StatefulSet"}
 ---
 
 #### Exercise 5.03
+
 ![image](https://user-images.githubusercontent.com/22393121/115956260-884afc80-a504-11eb-8e94-9032c178fd2a.png)
 
+---
+
+#### Exercise 5.04 Platform comparison
+
+Rancher vs. OpenShift.
+
+Rancher is better, because:
+
+- Installing Rancher takes minutes instead of days or even weeks.
+- Updating Rancher is a smooth process with no issues nor disruptions to service.
+- Rancher has less (no?) platform specific tools, reducing vendor lock-in.
+- Rancher support extends beyond the service, to kubernetes ecosystem related tools.
+- Rancher supports Docker containers.
+- Rancher is cheaper.
+- Rancher has less restrictions and more options to do stuff.
+- Rancher does not turn OSS into proprietary solutions.
+- Rancher is 100% OSS.
+
+Sources:
+https://rancher.com/blog/2020/rancher-vs-openshift/
+https://ubuntu.com/kubernetes/compare
+https://stackoverflow.com/questions/60934114/openshift-vs-rancher-what-are-the-differences
+
+---
