@@ -10,7 +10,7 @@ spec:
   scope: Namespaced
   names:
     # kind is normally the CamelCased singular type. Your resource manifests use this.
-    kind: DummySites
+    kind: DummySite
     # plural name to be used in the URL: /apis/<group>/<version>/<plural>
     plural: dummysites
     # singular name to be used as an alias on the CLI and for display
@@ -34,9 +34,14 @@ spec:
               properties:
                 url_to_clone:
                   type: string
+                ingresspath:
+                  type: string
       additionalPrinterColumns:
         - name: URL to be cloned
           type: string
           description: The url to be cloned
           jsonPath: .spec.url_to_clone
-          
+        - name: Ingresspath 
+          type: string 
+          description: Path where the cloned site can be accessed from
+          jsonPath: .spec.ingresspath

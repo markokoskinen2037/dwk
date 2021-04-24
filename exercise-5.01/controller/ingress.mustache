@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: dummysite-ingress
+  annotations:
+    ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - http:
+      paths:
+      {{#stooges}}
+      - path: /{{ingresspath}}
+        pathType: Exact
+        backend:
+          service:
+            name: {{serviceName}}
+            port:
+              number: 2345
+      {{/stooges}}

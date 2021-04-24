@@ -2,7 +2,7 @@ const scrape = require("website-scraper")
 const PuppeteerPlugin = require("website-scraper-puppeteer")
 const path = require("path")
 const express = require("express")
-const URL_TO_CLONE = "http://example.org" || process.env.URL_TO_CLONE
+const URL_TO_CLONE = process.env.URL_TO_CLONE || "http://example.org"
 
 const letsgo = async () => {
   console.log("scraping...")
@@ -19,6 +19,7 @@ const letsgo = async () => {
       plugins: [
         new PuppeteerPlugin({
           launchOptions: {
+            args: ["--no-sandbox"],
             // If you set  this to true, the headless browser will show up on screen
             headless: true,
           } /* optional */,

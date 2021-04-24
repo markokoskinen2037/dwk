@@ -1,6 +1,15 @@
 apiVersion: stable.dwk/v1
-kind: DummySites
+kind: DummySite
 metadata:
-  name: example-dummysite
+  name: examplefi-dummysite
 spec:
   url_to_clone: http://example.fi
+  ingresspath: examplefi
+---
+apiVersion: stable.dwk/v1
+kind: DummySite
+metadata:
+  name: examplecom-dummysite
+spec:
+  url_to_clone: http://example.com
+  ingresspath: examplecom
