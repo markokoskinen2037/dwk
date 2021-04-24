@@ -8,4 +8,4 @@ resources:
 images:
 - name: IMAGE_PLACEHOLDER
   newName: markokoskinen2019/dwk-project-backend
-  newTag: f605ca8ffc1a20614464622660583f09d5994fea
+  newTag: 7c70c95733cc710da93b085e2eb21d43a46922a3
