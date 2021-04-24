@@ -94,6 +94,12 @@ https://stackoverflow.com/questions/60934114/openshift-vs-rancher-what-are-the-d
 
 #### Exercise 5.06: Landscape
 
+red = used elsewhere; green = used in this course
+
+![image](./landscape_filled.png)
+
+
+
 - Outside of this course: MySQL, mongodb, postgresql, apache spark, docker-compose, circleCI, jenkins, gitlab, aws, docker, sap, heroku, grafana, sentry, elastic, graylog, nginx, amazon ecs, containerd, aws cloudformation, docker container registry, and amazon ecs.
 
 - New stuff within this course: redis, nats, helm, flux, k3s, k3d, kubernetes, coredns, traefik proxy, linkerd, google cloud (gke), google persistent disk, google container registry, prometheus, and grafana loki.
