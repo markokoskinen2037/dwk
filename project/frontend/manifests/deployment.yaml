@@ -4,13 +4,13 @@ metadata:
   name: project-frontend-svc
   namespace: project
 spec:
-  type: NodePort
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 3000
   selector:
     app: project-frontend
-  ports:
-    - port: 80
-      protocol: TCP
-      targetPort: 3000
+  type: NodePort
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -24,20 +24,23 @@ spec:
       app: project-frontend
   template:
     metadata:
+      annotations:
+        linkerd.io/inject: enabled
       labels:
         app: project-frontend
         group: project
     spec:
       containers:
-        - name: project-frontend
-          image: IMAGE_PLACEHOLDER
-          resources:
-            limits:
-              cpu: "500m"
-              memory: "50Mi"
-          readinessProbe:
-            initialDelaySeconds: 10 # Initial delay until the readiness is tested
-            periodSeconds: 5 # How often to test
-            httpGet:
-               path: /healthz
-               port: 3000
+      - image: IMAGE_PLACEHOLDER
+        name: project-frontend
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 3000
+          initialDelaySeconds: 10
+          periodSeconds: 5
+        resources:
+          limits:
+            cpu: 500m
+            memory: 50Mi
+---

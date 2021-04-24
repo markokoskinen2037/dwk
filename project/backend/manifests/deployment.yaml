@@ -4,13 +4,13 @@ metadata:
   name: project-backend-svc
   namespace: project
 spec:
-  type: NodePort
+  ports:
+  - port: 2345
+    protocol: TCP
+    targetPort: 3002
   selector:
     app: project-backend
-  ports:
-    - port: 2345
-      protocol: TCP
-      targetPort: 3002
+  type: NodePort
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -24,44 +24,46 @@ spec:
       app: project-backend
   template:
     metadata:
+      annotations:
+        linkerd.io/inject: enabled
       labels:
         app: project-backend
         group: project
     spec:
       containers:
-        - name: project-backend
-          image: IMAGE_PLACEHOLDER
-          resources:
-            limits:
-              cpu: "250m"
-              memory: "50Mi"
-          env:
-            - name: PGPASSWORD 
-              valueFrom:
-                secretKeyRef:
-                  name: gcpsql-postgres-config
-                  key: PGPASSWORD
-            - name: PGHOST
-              valueFrom:
-                secretKeyRef:
-                  name: gcpsql-postgres-config
-                  key: PGHOST
-            - name: PGUSER
-              valueFrom:
-                secretKeyRef:
-                  name: gcpsql-postgres-config
-                  key: PGUSER
-            - name: NATS_URL
-              value: nats://nats.default.svc.cluster.local:4222
-          readinessProbe:
-            initialDelaySeconds: 10 # Initial delay until the readiness is tested
-            periodSeconds: 5 # How often to test
-            httpGet:
-               path: /healthz
-               port: 3002
-          livenessProbe:
-            initialDelaySeconds: 20 # Initial delay until the liveness is tested
-            periodSeconds: 5 # How often to test
-            httpGet:
-               path: /healthz
-               port: 3002
+      - env:
+        - name: PGPASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: PGPASSWORD
+              name: gcpsql-postgres-config
+        - name: PGHOST
+          valueFrom:
+            secretKeyRef:
+              key: PGHOST
+              name: gcpsql-postgres-config
+        - name: PGUSER
+          valueFrom:
+            secretKeyRef:
+              key: PGUSER
+              name: gcpsql-postgres-config
+        - name: NATS_URL
+          value: nats://nats.default.svc.cluster.local:4222
+        image: IMAGE_PLACEHOLDER
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 3002
+          initialDelaySeconds: 20
+          periodSeconds: 5
+        name: project-backend
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 3002
+          initialDelaySeconds: 10
+          periodSeconds: 5
+        resources:
+          limits:
+            cpu: 250m
+            memory: 50Mi
