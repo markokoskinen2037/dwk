@@ -91,3 +91,24 @@ https://ubuntu.com/kubernetes/compare
 https://stackoverflow.com/questions/60934114/openshift-vs-rancher-what-are-the-differences
 
 ---
+
+#### Exercise 5.06: Landscape
+
+- Outside of this course: MySQL, mongodb, postgresql, apache spark, docker-compose, circleCI, jenkins, gitlab, aws, docker, sap, heroku, grafana, sentry, elastic, graylog, nginx, amazon ecs, containerd, aws cloudformation, docker container registry, and amazon ecs.
+
+- New stuff within this course: redis, nats, helm, flux, k3s, k3d, kubernetes, coredns, traefik proxy, linkerd, google cloud (gke), google persistent disk, google container registry, prometheus, and grafana loki.
+
+- Redis: was used in some exercises as the database.
+- Nats: was used to pass messages between services to allow scaling.
+- Helm: was used to easily install a lot of stuff, like SealedSecrets and NATS.
+- Flux: was used together with GitHub Actions to enable CI/CD and gitops practices.
+- K3s and k3d: were used to run a lightweight kubernetes cluster locally.
+- Kubernetes: was used to define, scale, and manage containerized applications.
+- Coredns: was used by k3d. It probably handles some service discovery stuff.
+- Traefik-proxy: was used by k3d, as the Ingress contoller.
+- Linkerd: was used to add a servicemesh to the project and for performing canary releases.
+- Google cloud (gke): was used to learn, in practice, how a real cluster can be set up.
+- Google persistent disk: was used by gke at some point to store GKE volumes.
+- Google container registry: was used as the container registry for some docker images.
+- Prometheus: was used to store/collect, search and visualize metrics collected from pods.
+- Grafana loki: was used to collect and store logs from pods.
