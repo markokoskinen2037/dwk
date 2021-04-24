@@ -1,6 +1,6 @@
 const express = require("express")
 const app = express()
-const port = 3001
+const port = process.env.PORT_NUMBER || 3001
 const { Client } = require("pg")
 
 const initDB = async () => {

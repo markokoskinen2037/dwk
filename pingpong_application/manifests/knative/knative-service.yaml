@@ -1,0 +1,33 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: pingpongapp
+spec:
+  template:
+    metadata:
+      name: pingpongapp-v1
+    spec:
+      containers:
+        - image: markokoskinen2019/dwk-second_app:v26
+          env:
+            - name: PORT_NUMBER
+              value: "8080"
+            - name: PGPASSWORD 
+              valueFrom:
+                secretKeyRef:
+                  name: gcpsql-postgres-config
+                  key: PGPASSWORD
+            - name: PGHOST
+              valueFrom:
+                secretKeyRef:
+                  name: gcpsql-postgres-config
+                  key: PGHOST
+            - name: PGUSER
+              valueFrom:
+                secretKeyRef:
+                  name: gcpsql-postgres-config
+                  key: PGUSER
+          resources:
+            limits:
+              cpu: "500m"
+              memory: "100Mi"
