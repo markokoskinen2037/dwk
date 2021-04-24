@@ -60,3 +60,9 @@ Query: `sum(kube_pod_info{namespace="prometheus", created_by_kind="StatefulSet"}
 1. create flux-system namespace
 2. apply ss master.key
 3. `flux bootstrap github --owner=markokoskinen2037 --repository=dwk --personal --private=false --branch=master --path=clusters/my-cluster`
+
+---
+
+#### Exercise 5.03
+![image](https://user-images.githubusercontent.com/22393121/115956260-884afc80-a504-11eb-8e94-9032c178fd2a.png)
+
