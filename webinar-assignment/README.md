@@ -1,11 +1,15 @@
-Proof of completion:
+# Proof of completion:
+
+#### Step 1
 ![image](./returnables/1.png)
+#### Step 2
 ![image](./returnables/2.png)
+#### Step 3
 ![image](./returnables/3.png)
 
 ---
 
-How to run the project:
+# How to run the project:
 
 k3d cluster create --port '8081:30080@agent[0]' -p 8082:80@loadbalancer --agents 2
 
