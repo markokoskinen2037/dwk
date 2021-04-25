@@ -1,0 +1,15 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: my-podmonitor
+  namespace: prometheus
+spec:
+  selector:
+    matchLabels:
+      app: webinar-app
+  podMetricsEndpoints:
+  - port: web
+    path: "/metrics"
+  namespaceSelector:
+    matchNames:
+      - default
