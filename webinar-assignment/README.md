@@ -22,7 +22,6 @@
 
 - helm upgrade --namespace prometheus --set prometheus.prometheusSpec.podMonitorSelectorNilUsesHelmValues=false --set prometheus.prometheusSpec.serviceMonitorSelectorNilUsesHelmValues=false kube-prometheus-stack-[XXXXX] prometheus-community/kube-prometheus-stack
 
-- kubectl get pods -n prometheus
 - kubectl -n prometheus port-forward kube-prometheus-stack-[XXXXX]-grafana-[XXXXX] 3000
 - kubectl -n prometheus port-forward prometheus-kube-prometheus-stack-[XXXXX]-prometheus-0 9090:9090
 
